@@ -1,16 +1,15 @@
-# This is a sample Python script.
+import string
+import keyword
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+user_input = input("Введіть ім'я змінної: ")
 
+is_valid = (
+    user_input and
+    not user_input[0].isdigit() and
+    user_input.islower() and
+    user_input.count('_') <= 1 and
+    user_input not in keyword.kwlist and
+    all(char in string.ascii_lowercase + string.digits + '_' for char in user_input)
+)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+print(is_valid)

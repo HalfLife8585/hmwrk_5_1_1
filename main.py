@@ -1,16 +1,14 @@
 import keyword
 
-def is_valid_variable_name(name):
-    if not name or name[0].isdigit():
-        return False
-    for char in name:
-        if char.isupper() or char in ", .!?;:/\'\"\t\n\r":
-            if char == "_":
-                continue
-            return False
-    if keyword.iskeyword(name) or len(name.replace("_", "")) > 1:
-        return False
-    return True
+user_input = input("Введіть ім'я змінної: ")
 
-name = input("Введіть ім'я змінної: ")
-print("True" if is_valid_variable_name(name) else "False")
+valid = (
+    user_input and
+    not user_input[0].isdigit() and
+    user_input.islower() and
+    user_input.count('_') <= 1 and
+    all(char.isalnum() or char == '_' for char in user_input) and
+    user_input not in keyword.kwlist
+)
+
+print(valid)
